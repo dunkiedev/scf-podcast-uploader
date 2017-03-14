@@ -1,0 +1,82 @@
+{
+    "id": 2617,
+    "date": "2017-03-09T20:59:47",
+    "date_gmt": "2017-03-09T20:59:47",
+    "guid": {
+        "rendered": "http:\/\/windows7vm\/wordpress\/wp-content\/uploads\/SCF_2017-03-05.mp3",
+        "raw": "http:\/\/windows7vm\/wordpress\/wp-content\/uploads\/SCF_2017-03-05.mp3"
+    },
+    "modified": "2017-03-09T20:59:47",
+    "modified_gmt": "2017-03-09T20:59:47",
+    "slug": "scf_2017-03-05",
+    "status": "inherit",
+    "type": "attachment",
+    "link": "http:\/\/windows7vm\/wordpress\/scf_2017-03-05\/",
+    "title": {
+        "raw": "SCF_2017-03-05",
+        "rendered": "SCF_2017-03-05"
+    },
+    "author": 3,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "meta": {},
+    "alt_text": "",
+    "caption": "",
+    "description": "",
+    "media_type": "file",
+    "mime_type": "audio\/mpeg",
+    "media_details": {
+        "dataformat": "mp3",
+        "channels": "1",
+        "sample_rate": "44100",
+        "bitrate": "49325.222046657",
+        "channelmode": "mono",
+        "bitrate_mode": "vbr",
+        "codec": "LAME",
+        "encoder": "LAME3.98r",
+        "lossless": "",
+        "encoder_options": "-V9 -b32",
+        "compression_ratio": "0.069905360043449",
+        "fileformat": "mp3",
+        "filesize": "15672298",
+        "mime_type": "audio\/mpeg",
+        "length": "2542",
+        "length_formatted": "42:22",
+        "genre": "Speech",
+        "album": "Shenley Christian Fellowship Podcast",
+        "title": "Hosting the Presence of God (Ross Dilnot)",
+        "artist": "Shenley Christian Fellowship",
+        "sizes": {}
+    },
+    "post": null,
+    "source_url": "http:\/\/windows7vm\/wordpress\/wp-content\/uploads\/SCF_2017-03-05.mp3",
+    "_links": {
+        "self": [
+            {
+                "href": "http:\/\/windows7vm\/wordpress\/wp-json\/wp\/v2\/media\/2617"
+            }
+        ],
+        "collection": [
+            {
+                "href": "http:\/\/windows7vm\/wordpress\/wp-json\/wp\/v2\/media"
+            }
+        ],
+        "about": [
+            {
+                "href": "http:\/\/windows7vm\/wordpress\/wp-json\/wp\/v2\/types\/attachment"
+            }
+        ],
+        "author": [
+            {
+                "embeddable": true,
+                "href": "http:\/\/windows7vm\/wordpress\/wp-json\/wp\/v2\/users\/3"
+            }
+        ],
+        "replies": [
+            {
+                "embeddable": true,
+                "href": "http:\/\/windows7vm\/wordpress\/wp-json\/wp\/v2\/comments?post=2617"
+            }
+        ]
+    }
+}
