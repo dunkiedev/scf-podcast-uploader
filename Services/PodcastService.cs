@@ -39,8 +39,11 @@ namespace ScfPodcastUploader.Services
             {
                 status = "publish",
                 title = podcastPost.Title,
-                content = content
+                content = content,
+                categories = new [] { _configurationService.Configuration.WordPressPodcastCategoryId },
+                author = _configurationService.Configuration.WordPressAuthorId
             };
+            //TODO set publish date
             WordPressResult result = _wordPressService.AddPost(wordPressPost);
 
             //4. return result

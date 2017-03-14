@@ -17,8 +17,10 @@ namespace ScfPodcastUploader.Services.Config
                 UseProxy = true,
                 AuthMethod = "BASIC",
                 BasicAuthUsername = "admin2",
-                BasicAuthPassword = "66booksinthebible",
-                PostTemplatePath = "podcast-post-template.html"
+                BasicAuthPassword = "Passw0rd",
+                PostTemplatePath = "podcast-post-template.html",
+                WordPressPodcastCategoryId = 6, //Podcast
+                WordPressAuthorId = 3 //admin2 = Phil Dunkerley
             };
         }
         public Configuration Configuration => _configuration;

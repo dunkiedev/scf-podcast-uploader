@@ -35,5 +35,9 @@ namespace ScfPodcastUploader.Domain.Config
         }
 
         public string PostTemplatePath { get; set; }
+
+        public int WordPressPodcastCategoryId { get; set; }
+
+        public int WordPressAuthorId { get; set; }
     }
 }

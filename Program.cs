@@ -50,6 +50,7 @@ namespace ScfPodcastUploader
             };
 
             WordPressResult createPostResult = _podcastService.CreatePodcastPost(podcastPost);
+            Console.Out.WriteLine("Post id = " + createPostResult.Id);
             //WordPressResult audioFileResult = _podcastService.UploadAudioFile(audioFilepath);
             //Console.Out.WriteLine("URL = " + audioFileResult.Url);
         }
