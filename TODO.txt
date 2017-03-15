@@ -1,0 +1,10 @@
+SCF Podcast Uploader ToDo
+-------------------------
+
+- take in parameters from standard in
+- create audio MP3 file from intro + sermon (use ffmpeg)
+    - create ID3 tags for MP3 file
+- insert date into name of podcast post entry
+- work out how to upload the feed file
+- integrate with oauth
+- error handling
