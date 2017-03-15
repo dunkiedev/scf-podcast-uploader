@@ -40,19 +40,21 @@ namespace ScfPodcastUploader
         {
             string audioFilepath = "/Users/phil/Documents/Shenley/SCF Podcast/SCF_2017-03-05.mp3";
 
+            //upload the file
+            WordPressResult audioFileResult = _podcastService.UploadAudioFile(audioFilepath);
+            Console.Out.WriteLine("URL = " + audioFileResult.Url);
+            
             PodcastPost podcastPost = new PodcastPost()
             {
                 Title = "Hosting the Presence of God",
                 Speaker = "Ross Dilnot",
                 BibleText = "Psalm 16:11, 1 Samuel 16:21-23, Acts 2:1-41, Acts 5:12-16, Acts 19:11-12",
                 AudioFilePath = audioFilepath,
-                PodcastUrl = "http://windows7vm/wordpress/wp-content/uploads/SCF_2017-03-05.mp3"
+                PodcastUrl = audioFileResult.Url
             };
 
             WordPressResult createPostResult = _podcastService.CreatePodcastPost(podcastPost);
             Console.Out.WriteLine("Post id = " + createPostResult.Id);
-            //WordPressResult audioFileResult = _podcastService.UploadAudioFile(audioFilepath);
-            //Console.Out.WriteLine("URL = " + audioFileResult.Url);
         }
 
     }
