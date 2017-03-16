@@ -43,6 +43,7 @@ namespace ScfPodcastUploader.Services.WordPress
                 {
                     IsSuccess = true,
                     Id = jsonResult.Value<int>("id"),
+                    Url = jsonResult.Value<string>("link")
                 };
             }
             else

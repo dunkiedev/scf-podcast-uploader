@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using log4net;
@@ -14,7 +15,7 @@ namespace ScfPodcastUploader
 {
     public class Program
     {
-        private static readonly ILog logger = LogManager.GetLogger(typeof(Program));
+        private static readonly ILog _logger = LogManager.GetLogger(typeof(Program));
 
         public static void Main(string[] args)
         {
@@ -35,24 +36,142 @@ namespace ScfPodcastUploader
 
         public void Run()
         {
-            string audioFilepath = "/Users/phil/Documents/Shenley/SCF Podcast/SCF_2017-03-05.mp3";
-
-            //upload the file
-            WordPressResult audioFileResult = _podcastService.UploadAudioFile(audioFilepath);
-            Console.Out.WriteLine("URL = " + audioFileResult.Url);
-            
             PodcastPost podcastPost = new PodcastPost()
             {
                 Title = "Hosting the Presence of God",
                 Speaker = "Ross Dilnot",
                 BibleText = "Psalm 16:11, 1 Samuel 16:21-23, Acts 2:1-41, Acts 5:12-16, Acts 19:11-12",
-                AudioFilePath = audioFilepath,
-                PodcastUrl = audioFileResult.Url
+                Date = new DateTime(2017, 3, 5, 11, 0 , 0),
+                AudioFilePath = "/Users/phil/Documents/Shenley/SCF Podcast/SCF_2017-03-05.mp3",
             };
 
-            WordPressResult createPostResult = _podcastService.CreatePodcastPost(podcastPost);
-            Console.Out.WriteLine("Post id = " + createPostResult.Id);
+            // PodcastPost podcastPost = PromptUserForPodcastDetails();
+
+            //upload the file
+            WordPressResult audioFileResult = UploadAudioFile(podcastPost);
+            if(!audioFileResult.IsSuccess) { return; }
+
+            podcastPost.PodcastUrl = audioFileResult.Url;
+
+            WordPressResult createPostResult = CreatePost(podcastPost);
         }
 
+        private PodcastPost PromptUserForPodcastDetails()
+        {
+            PodcastPost podcastPost = new PodcastPost();
+
+            Console.Write("Title: ");
+            podcastPost.Title = Console.ReadLine();
+            _logger.Info("Title entered: " + podcastPost.Title);
+
+            Console.Write("Speaker: ");
+            podcastPost.Speaker = Console.ReadLine();
+            _logger.Info("Speaker entered: " + podcastPost.Speaker);
+
+            Console.Write("Bible text(s): ");
+            podcastPost.BibleText = Console.ReadLine();
+            _logger.Info("Bible text(s) entered: " + podcastPost.BibleText);
+
+            podcastPost.Date = PromptForDate();
+
+            podcastPost.AudioFilePath = PromptForAudioFilePath();
+
+            return podcastPost;
+        }
+
+        private static DateTime PromptForDate()
+        {
+            DateTime date;
+            string dateString;
+            bool isFirstEntryOfDate = true;
+            do
+            {
+                if (isFirstEntryOfDate)
+                {
+                    Console.Write("Date - dd/mm/yyyy: ");
+                }
+                else
+                {
+                    Console.Write("Invalid date - must be in format dd/mm/yyyy e.g. 31/12/2016: ");
+                }
+
+                dateString = Console.ReadLine();
+                _logger.Info("Date entered: " + dateString);
+                isFirstEntryOfDate = false;
+            } while (!DateTime.TryParseExact(dateString, new[] { "dd/MM/yyyy", "d/MM/yyyy", "dd/M/yyyy" }, null, DateTimeStyles.None, out date));
+            //must be valid now - set the time to 11:00am
+            return date.AddHours(11);
+        }
+
+        private static string PromptForAudioFilePath()
+        {
+            bool isFirstEntryOfPath = true;
+            string path;
+            do
+            {
+                if(isFirstEntryOfPath)
+                {
+                    Console.Write("Path to audio file: ");
+                }
+                else
+                {
+                    Console.Write("File does not exist - please enter a valid path: ");
+                }
+                
+                path = Console.ReadLine();
+                _logger.Info("Audio file path entered: " + path);
+                isFirstEntryOfPath = false;
+            } while(!File.Exists(path));
+
+            return path;
+        }
+
+        private WordPressResult UploadAudioFile(PodcastPost podcastPost)
+        {
+            Console.Write("Uploading the audio file... ");
+            _logger.Info("Beginning upload of audio file");
+
+            WordPressResult result = _podcastService.UploadAudioFile(podcastPost.AudioFilePath);
+            if(result.IsSuccess)
+            {
+                Console.WriteLine($"Success! (Id = {result.Id})");
+                _logger.Info($"Upload was successful - id = {result.Id}");
+                _logger.Info($"Audio file URL = {result.Url}");
+            }
+            else
+            {
+                Console.WriteLine("Oh dear, it didn't work - here is the error: ");
+                Console.WriteLine(result.ErrorMessage);
+                Console.WriteLine("See the log file for more details...");
+
+                _logger.Error($"Upload failed with error: {result.ErrorMessage}");
+                //TODO need to capture the detailed error somehow
+            }
+
+            return result;
+        }
+
+        private WordPressResult CreatePost(PodcastPost podcastPost)
+        {
+            Console.Write("Creating WordPress post...  ");
+            _logger.Info("Beginning creation of post");
+            
+            WordPressResult result = _podcastService.CreatePodcastPost(podcastPost);
+            if(result.IsSuccess)
+            {
+                Console.WriteLine($"Success! (Id = {result.Id})");
+                Console.WriteLine($"The URL of the new post is:\n{result.Url}");
+                _logger.Info($"Post creation succeeded - id = {result.Id}");
+                _logger.Info($"Post URL = {result.Url}");
+            }
+            else
+            {
+                Console.WriteLine("Oh dear, it didn't work - here is the error: ");
+                Console.WriteLine(result.ErrorMessage);
+                Console.WriteLine("See the log file for more details...");
+            }
+
+            return result;
+        }
     }
 }

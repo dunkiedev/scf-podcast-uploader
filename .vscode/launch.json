@@ -9,7 +9,8 @@
             "program": "${workspaceRoot}/bin/Debug/netcoreapp1.1/ScfPodcastUploader.dll",
             "args": [],
             "cwd": "${workspaceRoot}",
-            "externalConsole": false,
+            //"externalConsole": false,
+            "console": "integratedTerminal",
             "stopAtEntry": false,
             "internalConsoleOptions": "openOnSessionStart"
         },
