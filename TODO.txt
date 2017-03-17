@@ -1,13 +1,13 @@
 SCF Podcast Uploader ToDo
 -------------------------
 
+- create ID3 tags for MP3 file
 - set published date and time to the podcast date + 11am
 - be able to read in the details from a file (e.g. run with -i (input) option)
-- create audio MP3 file from intro + sermon (use ffmpeg)
-    - create ID3 tags for MP3 file
 - work out how to upload the feed file
 - integrate with oauth
 - error handling
 
+DONE create audio MP3 file from intro + sermon (use ffmpeg)
 DONE take in parameters from standard in
 DONE insert date into name of podcast post entry

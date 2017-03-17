@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using log4net;
 using ScfPodcastUploader.Domain;
 using ScfPodcastUploader.Domain.WordPress;
 using ScfPodcastUploader.Services.Config;
@@ -10,12 +12,92 @@ namespace ScfPodcastUploader.Services
 {
     public class PodcastService : IPodcastService
     {
+        private static readonly ILog _logger = LogManager.GetLogger(typeof(Program));
+
         private readonly IWordPressService _wordPressService;
         private readonly IConfigurationService _configurationService;
         public PodcastService(IWordPressService wordPressService, IConfigurationService configurationService)
         {
             _configurationService = configurationService;
             _wordPressService = wordPressService;
+        }
+
+        public string GenerateMp3File(string wavFilePath, DateTime podcastDate)
+        {
+            //1. create input file for ffmpeg
+            string[] files = new []
+            {
+                $"file '{_configurationService.Configuration.IntroWavFilePath}'",
+                $"file '{wavFilePath}'"
+            };
+
+            DirectoryInfo tempFolder = Directory.CreateDirectory("temp");
+            string filelistPath = Path.Combine(tempFolder.FullName, "filelist.txt");
+            _logger.Info($"Generating filelist.txt at: {filelistPath}");
+            File.WriteAllLines(filelistPath, files);
+
+            //2. call ffmpeg to create the wav file
+            string podcastWavFilepath = Path.Combine(tempFolder.FullName, "podcast.wav");
+            Process ffmpeg = new Process();
+            ffmpeg.StartInfo.FileName = "ffmpeg";
+            ffmpeg.StartInfo.Arguments = $"-y -f concat -safe 0 -i \"{filelistPath}\" -c copy \"{podcastWavFilepath}\"";
+            ffmpeg.StartInfo.UseShellExecute = false;
+            ffmpeg.StartInfo.RedirectStandardOutput = true;
+            ffmpeg.StartInfo.RedirectStandardError = true;
+            _logger.Info($"Calling ffmpeg to create WAV file with arguments: {ffmpeg.StartInfo.Arguments}");
+            ffmpeg.Start();
+            // string output = ffmpeg.StandardOutput.ReadToEnd();
+            string output = ffmpeg.StandardError.ReadToEnd();
+            _logger.InfoFormat($"Output from ffmpeg:\n{output}");
+            ffmpeg.WaitForExit();
+            _logger.Info("WAV file generation finished");
+
+            if(!File.Exists(podcastWavFilepath))
+            {
+                throw new InvalidOperationException("Intermediate WAV file was not generated");
+            }
+
+            //3. call ffmpeg to encode the generated file as an MP3
+            int bitrate = _configurationService.Configuration.VbrBitrate;
+            string podcastFilename = $"SCF_{podcastDate.ToString("yyyy-MM-dd")}.mp3";
+            string podcastFilePath = Path.Combine(_configurationService.Configuration.PodcastAudioFolder, podcastFilename);
+            _logger.Info($"Ensuring output path exists: {_configurationService.Configuration.PodcastAudioFolder}");
+            Directory.CreateDirectory(_configurationService.Configuration.PodcastAudioFolder);
+            _logger.Info($"MP3 file will be saved as: {podcastFilePath}");
+
+            ffmpeg = new Process();
+            ffmpeg.StartInfo.FileName = "ffmpeg";
+            ffmpeg.StartInfo.Arguments = $"-y -i \"{podcastWavFilepath}\" -codec:a libmp3lame -qscale:a {bitrate} \"{podcastFilePath}\"";
+            ffmpeg.StartInfo.UseShellExecute = false;
+            ffmpeg.StartInfo.RedirectStandardOutput = true;
+            ffmpeg.StartInfo.RedirectStandardError = true;
+            _logger.Info($"Calling ffmpeg to create MP3 file with arguments: {ffmpeg.StartInfo.Arguments}");
+            ffmpeg.Start();
+            // string output = ffmpeg.StandardOutput.ReadToEnd();
+            output = ffmpeg.StandardError.ReadToEnd();
+            _logger.InfoFormat($"Output from ffmpeg:\n{output}");
+            ffmpeg.WaitForExit();
+            _logger.Info("MP3 file generation finished");
+
+            if(!File.Exists(podcastFilePath))
+            {
+                throw new InvalidOperationException("MP3 file was not generated");
+            }
+
+            //4. add ID3 tags
+            //TODO
+
+            //5. if all went well, tidy up
+            try
+            {
+                tempFolder.Delete(true);
+            }
+            catch(Exception ex)
+            {
+                _logger.Warn("Could not delete temp folder", ex);
+            }
+
+            return podcastFilePath;
         }
 
         public WordPressResult CreatePodcastPost(PodcastPost podcastPost)

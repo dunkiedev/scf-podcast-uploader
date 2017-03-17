@@ -25,7 +25,15 @@ namespace ScfPodcastUploader
 
             IContainer container = Container.For<ScfPodcastUploaderRegistry>();
             Program program = container.GetInstance<Program>();
-            program.Run();
+
+            try
+            {
+                program.Run();
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Fatal exception was thrown", ex);
+            }
         }
         private readonly IPodcastService _podcastService;
 
@@ -38,14 +46,18 @@ namespace ScfPodcastUploader
         {
             PodcastPost podcastPost = new PodcastPost()
             {
-                Title = "Hosting the Presence of God",
+                Title = "Automating the Church",
                 Speaker = "Ross Dilnot",
                 BibleText = "Psalm 16:11, 1 Samuel 16:21-23, Acts 2:1-41, Acts 5:12-16, Acts 19:11-12",
-                Date = new DateTime(2017, 3, 5, 11, 0 , 0),
-                AudioFilePath = "/Users/phil/Documents/Shenley/SCF Podcast/SCF_2017-03-05.mp3",
+                Date = new DateTime(2017, 3, 17, 11, 0 , 0),
+                // AudioFilePath = "/Users/phil/Documents/Shenley/SCF Podcast/SCF_2017-03-05.mp3",
+                AudioFilePath = "/Users/phil/Documents/Shenley/SCF Podcast/To Do/test.wav",
             };
 
             // PodcastPost podcastPost = PromptUserForPodcastDetails();
+
+            //create the MP3 file
+            podcastPost.AudioFilePath = CreateMp3File(podcastPost.AudioFilePath, podcastPost.Date);
 
             //upload the file
             WordPressResult audioFileResult = UploadAudioFile(podcastPost);
@@ -53,6 +65,7 @@ namespace ScfPodcastUploader
 
             podcastPost.PodcastUrl = audioFileResult.Url;
 
+            //create the post on WordPress
             WordPressResult createPostResult = CreatePost(podcastPost);
         }
 
@@ -124,6 +137,30 @@ namespace ScfPodcastUploader
             } while(!File.Exists(path));
 
             return path;
+        }
+
+        private string CreateMp3File(string filepath, DateTime podcastDate)
+        {
+            if(filepath.EndsWith(".mp3"))
+            {
+                Console.WriteLine("Supplied audio file is MP3 file so skipping MP3 generation");
+                return filepath;
+            }
+
+            //must be a WAV file, so create the MP3
+            Console.Write("Generating MP3 file - please be patient... ");
+            try
+            {
+                string mp3Filepath = _podcastService.GenerateMp3File(filepath, podcastDate);
+                Console.WriteLine("Success!");
+                return mp3Filepath;
+            }
+            catch (System.Exception ex)
+            {
+                Console.WriteLine("Failed with error:");
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
 
         private WordPressResult UploadAudioFile(PodcastPost podcastPost)

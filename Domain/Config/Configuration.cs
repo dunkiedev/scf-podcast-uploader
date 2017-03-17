@@ -39,5 +39,24 @@ namespace ScfPodcastUploader.Domain.Config
         public int WordPressPodcastCategoryId { get; set; }
 
         public int WordPressAuthorId { get; set; }
+
+        /// <summary>
+        /// Path to the folder where we keep the generated audio files
+        /// </summary>
+        /// <returns></returns>
+        public string PodcastAudioFolder { get; set; }
+
+        /// <summary>
+        /// Path to the intro wav file.
+        /// </summary>
+        /// <returns></returns>
+        public string IntroWavFilePath { get; set; }
+
+        /// <summary>
+        /// The VBR bitrate encoding quality. Should be a number between 0-9. The smallest
+        /// file is created with an encoding of 9, which is what we usually use.
+        /// </summary>
+        /// <returns></returns>
+        public int VbrBitrate { get; set; }
     }
 }
