@@ -1,0 +1,6 @@
+;FFMETADATA1
+genre=Speech
+album=Shenley Christian Fellowship Podcast
+title=Hosting the Presence of God (Ross Dilnot)
+artist=Shenley Christian Fellowship
+encoder=Lavf57.56.101
