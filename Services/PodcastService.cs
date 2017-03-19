@@ -22,7 +22,7 @@ namespace ScfPodcastUploader.Services
             _wordPressService = wordPressService;
         }
 
-        public string GenerateMp3File(string wavFilePath, DateTime podcastDate)
+        public string GenerateMp3File(string wavFilePath, PodcastPost podcastPost)
         {
             //1. create input file for ffmpeg
             string[] files = new []
@@ -59,15 +59,24 @@ namespace ScfPodcastUploader.Services
 
             //3. call ffmpeg to encode the generated file as an MP3
             int bitrate = _configurationService.Configuration.VbrBitrate;
-            string podcastFilename = $"SCF_{podcastDate.ToString("yyyy-MM-dd")}.mp3";
+            string podcastFilename = $"SCF_{podcastPost.Date.ToString("yyyy-MM-dd")}.mp3";
             string podcastFilePath = Path.Combine(_configurationService.Configuration.PodcastAudioFolder, podcastFilename);
             _logger.Info($"Ensuring output path exists: {_configurationService.Configuration.PodcastAudioFolder}");
             Directory.CreateDirectory(_configurationService.Configuration.PodcastAudioFolder);
             _logger.Info($"MP3 file will be saved as: {podcastFilePath}");
 
+            //create the metadata file for the ID3 tags
+            string metadataTemplate = File.ReadAllText(_configurationService.Configuration.FfmpegMetadataTemplatePath);
+            string metadata = string.Format(metadataTemplate,
+                podcastPost.Title,
+                podcastPost.Speaker);
+            string metadataFilepath = Path.Combine(tempFolder.FullName, "metadata.txt");
+            _logger.Info("Writing metadata file");
+            File.WriteAllText(metadataFilepath, metadata);
+
             ffmpeg = new Process();
             ffmpeg.StartInfo.FileName = "ffmpeg";
-            ffmpeg.StartInfo.Arguments = $"-y -i \"{podcastWavFilepath}\" -codec:a libmp3lame -qscale:a {bitrate} \"{podcastFilePath}\"";
+            ffmpeg.StartInfo.Arguments = $"-y -i \"{podcastWavFilepath}\" -i \"{metadataFilepath}\" -map_metadata 1 -c:a copy -id3v2_version 3 -write_id3v1 1 -codec:a libmp3lame -qscale:a {bitrate} \"{podcastFilePath}\"";
             ffmpeg.StartInfo.UseShellExecute = false;
             ffmpeg.StartInfo.RedirectStandardOutput = true;
             ffmpeg.StartInfo.RedirectStandardError = true;
@@ -83,9 +92,6 @@ namespace ScfPodcastUploader.Services
             {
                 throw new InvalidOperationException("MP3 file was not generated");
             }
-
-            //4. add ID3 tags
-            //TODO
 
             //5. if all went well, tidy up
             try

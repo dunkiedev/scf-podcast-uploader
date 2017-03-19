@@ -23,7 +23,8 @@ namespace ScfPodcastUploader.Services.Config
                 WordPressAuthorId = 3, //admin2
                 PodcastAudioFolder = "/Users/phil/Documents/Shenley/SCF Podcast/automated",
                 IntroWavFilePath = "/Users/phil/Documents/Shenley/SCF Podcast/To Do/Intro.wav",
-                VbrBitrate = 9
+                VbrBitrate = 9,
+                FfmpegMetadataTemplatePath = "metadata-template.txt"
             };
         }
         public Configuration Configuration => _configuration;

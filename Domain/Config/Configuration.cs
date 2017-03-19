@@ -58,5 +58,11 @@ namespace ScfPodcastUploader.Domain.Config
         /// </summary>
         /// <returns></returns>
         public int VbrBitrate { get; set; }
+
+        /// <summary>
+        /// Path to the metadata path that stores the ID3 tags - in ffmpeg format.
+        /// </summary>
+        /// <returns></returns>
+        public string FfmpegMetadataTemplatePath { get; set; }
     }
 }

@@ -49,7 +49,7 @@ namespace ScfPodcastUploader
                 Title = "Automating the Church",
                 Speaker = "Ross Dilnot",
                 BibleText = "Psalm 16:11, 1 Samuel 16:21-23, Acts 2:1-41, Acts 5:12-16, Acts 19:11-12",
-                Date = new DateTime(2017, 3, 17, 11, 0 , 0),
+                Date = new DateTime(2017, 3, 19, 11, 0 , 0),
                 // AudioFilePath = "/Users/phil/Documents/Shenley/SCF Podcast/SCF_2017-03-05.mp3",
                 AudioFilePath = "/Users/phil/Documents/Shenley/SCF Podcast/To Do/test.wav",
             };
@@ -57,7 +57,7 @@ namespace ScfPodcastUploader
             // PodcastPost podcastPost = PromptUserForPodcastDetails();
 
             //create the MP3 file
-            podcastPost.AudioFilePath = CreateMp3File(podcastPost.AudioFilePath, podcastPost.Date);
+            podcastPost.AudioFilePath = CreateMp3File(podcastPost.AudioFilePath, podcastPost);
 
             //upload the file
             WordPressResult audioFileResult = UploadAudioFile(podcastPost);
@@ -139,7 +139,7 @@ namespace ScfPodcastUploader
             return path;
         }
 
-        private string CreateMp3File(string filepath, DateTime podcastDate)
+        private string CreateMp3File(string filepath, PodcastPost podcastPost)
         {
             if(filepath.EndsWith(".mp3"))
             {
@@ -151,7 +151,7 @@ namespace ScfPodcastUploader
             Console.Write("Generating MP3 file - please be patient... ");
             try
             {
-                string mp3Filepath = _podcastService.GenerateMp3File(filepath, podcastDate);
+                string mp3Filepath = _podcastService.GenerateMp3File(filepath, podcastPost);
                 Console.WriteLine("Success!");
                 return mp3Filepath;
             }

@@ -11,9 +11,9 @@ namespace ScfPodcastUploader.Services
         /// and encoding the result in MP3 format, saving the file in the configured folder.
         /// </summary>
         /// <param name="wavFilePath">Path to the wav file containing just the sermon</param>
-        /// <param name="podcastDate">Date of the podcast</param>
+        /// <param name="podcastPost">The PodcastPost containing the details for the podcast</param>
         /// <returns></returns>
-        string GenerateMp3File(string wavFilePath, DateTime podcastDate);
+        string GenerateMp3File(string wavFilePath, PodcastPost podcastPost);
 
         WordPressResult UploadAudioFile(string filepath);
 
