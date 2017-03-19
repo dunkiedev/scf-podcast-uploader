@@ -13,5 +13,7 @@ namespace ScfPodcastUploader.Domain
         public int[] categories { get; set; }
 
         public int author { get; set; }
+
+        public string date { get; set; }
     }
 }

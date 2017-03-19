@@ -128,10 +128,10 @@ namespace ScfPodcastUploader.Services
                 status = "publish",
                 title =  GetTitlePrefixedWithDate(podcastPost),
                 content = content,
+                date = podcastPost.Date.ToString("yyyy-MM-dd hh:mm:ss"),
                 categories = new [] { _configurationService.Configuration.WordPressPodcastCategoryId },
                 author = _configurationService.Configuration.WordPressAuthorId
             };
-            //TODO set publish date
             WordPressResult result = _wordPressService.AddPost(wordPressPost);
 
             //4. return result
