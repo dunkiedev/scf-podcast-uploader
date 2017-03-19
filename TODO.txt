@@ -2,12 +2,12 @@ SCF Podcast Uploader ToDo
 -------------------------
 
 - bug: size of file is of the WAV file, not the MP3 file, so is huge
-- read in configuration settings from file
-- configuration property for ffmpeg command
-- be able to read in the details from a file (e.g. run with -i (input) option)
 - work out how to upload the feed file
     - can you store an XML file as media in WordPress?
 - integrate with oauth
+- read in configuration settings from file
+- configuration property for ffmpeg command
+- be able to read in the details from a file (e.g. run with -i (input) option)
 - work out how to publish the application
 PART error handling
 
