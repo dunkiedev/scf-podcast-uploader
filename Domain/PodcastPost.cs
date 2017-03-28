@@ -16,7 +16,17 @@ namespace ScfPodcastUploader.Domain
 
         public DateTime Date { get; set; }
 
-        public string PodcastUrl { get; set; }
+        /// <summary>
+        /// URL of the podcast media i.see. the MP3 file once it has been uploaded.
+        /// </summary>
+        /// <returns></returns>
+        public string PodcastMediaUrl { get; set; }
+
+        /// <summary>
+        /// The URL of the actual post (not the media item).
+        /// </summary>
+        /// <returns></returns>
+        public string PodcastPostUrl { get; set; }
 
         public int CategoryId { get; set; }
 
@@ -35,6 +45,15 @@ namespace ScfPodcastUploader.Domain
             // Adjust the format string to your preferences. For example "{0:0.#}{1}" would
             // show a single decimal place, and no space.
             return string.Format("{0:0.#}{1}", len, sizes[2]);
+        }
+
+        /// <summary>
+        /// Gets the size of the MP3 file in bytes.
+        /// </summary>
+        /// <returns></returns>
+        public double GetMediaSizeInBytes()
+        {
+            return new FileInfo(AudioFilePath).Length;
         }
 
         public string GetFormattedDuration()
@@ -64,6 +83,15 @@ namespace ScfPodcastUploader.Domain
             }
 
             return "Unknown";
+        }
+
+        /// <summary>
+        /// Gets the date in RSS format (RFC822) e.g. Sun, 19 Mar 2017 11:00:00 +0000
+        /// </summary>
+        /// <returns></returns>
+        public string GetDateInRssFormat()
+        {
+            return Date.ToString("ddd, dd MMM yyyy HH:mm:ss K");
         }
     }
 }

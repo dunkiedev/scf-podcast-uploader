@@ -18,5 +18,11 @@ namespace ScfPodcastUploader.Services
         WordPressResult UploadAudioFile(string filepath);
 
         WordPressResult CreatePodcastPost(PodcastPost podcastPost);
+
+        /// <summary>
+        /// Updates the feed XML with the details of the latest podcast.
+        /// </summary>
+        /// <param name="post">The PodcastPost containing the details for the podcast</param>
+        void UpdateRssFeed(PodcastPost post);
     }
 }

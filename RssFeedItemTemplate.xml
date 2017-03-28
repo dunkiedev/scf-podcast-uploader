@@ -1,0 +1,7 @@
+<item>
+  <title>{0}</title>
+  <description>{1}</description>
+  <link>{2}</link>
+  <enclosure url="{3}" length="{4}" type="audio/mpeg"></enclosure>
+  <pubDate>{5}</pubDate>
+</item>

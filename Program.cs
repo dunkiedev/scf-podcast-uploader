@@ -63,10 +63,14 @@ namespace ScfPodcastUploader
             WordPressResult audioFileResult = UploadAudioFile(podcastPost);
             if(!audioFileResult.IsSuccess) { return; }
 
-            podcastPost.PodcastUrl = audioFileResult.Url;
+            podcastPost.PodcastMediaUrl = audioFileResult.Url;
 
             //create the post on WordPress
             WordPressResult createPostResult = CreatePost(podcastPost);
+            podcastPost.PodcastPostUrl = createPostResult.Url;
+            
+            //update the RSS feed
+            _podcastService.UpdateRssFeed(podcastPost);
         }
 
         private PodcastPost PromptUserForPodcastDetails()

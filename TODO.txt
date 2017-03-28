@@ -19,17 +19,18 @@ DONE insert date into name of podcast post entry
 
 Notes on updating the feed XML
 ------------------------------
-1. download the existing feed
+
+1. search for the existing feed media item
+http://windows7vm/wordpress/wp-json/wp/v2/media?filter[title]=scfFeed
+
+2. download the existing feed - get the URL from the item. It will be something like:
 http://windows7vm/wordpress/wp-content/uploads/scfFeed.xml
 
-2. update it with the details of the new podcast
+3. update it with the details of the new podcast
 - parse as XML
 - load template node from file
 - update the template node with correct details
 - insert the node into the feed
-
-3. search for the existing feed media item
-http://windows7vm/wordpress/wp-json/wp/v2/media?filter[title]=scfFeed
 
 4. if it exists, delete it
 http://windows7vm/wordpress/wp-json/wp/v2/media/2663?force=true

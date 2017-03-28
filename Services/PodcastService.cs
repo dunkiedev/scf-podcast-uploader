@@ -2,8 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
 using log4net;
 using ScfPodcastUploader.Domain;
+using ScfPodcastUploader.Domain.Config;
 using ScfPodcastUploader.Domain.WordPress;
 using ScfPodcastUploader.Services.Config;
 using ScfPodcastUploader.Services.WordPress;
@@ -117,7 +124,7 @@ namespace ScfPodcastUploader.Services
                 podcastPost.BibleText, //{1}
                 podcastPost.GetFormattedDuration(), //{2}
                 podcastPost.GetFormattedSize(), //{3}
-                podcastPost.PodcastUrl, //{4}
+                podcastPost.PodcastMediaUrl, //{4}
                 podcastPost.Title //{5}
             };
             string content = string.Format(templateText, substitutions.ToArray());
@@ -140,7 +147,37 @@ namespace ScfPodcastUploader.Services
 
         public WordPressResult UploadAudioFile(string filepath)
         {
-            return _wordPressService.AddMedia(filepath);
+            return _wordPressService.AddMedia(filepath, "audio/mp3");
+        }
+
+        public void UpdateRssFeed(PodcastPost podcastPost)
+        {
+            //1. search for the existing feed media item
+            WordPressMedia media = _wordPressService.FindMediaByTitle("scfFeed");
+
+            //2. download the existing feed - get the URL from the item
+            XDocument doc = GetRssFeedAsXml(media.source_url);
+
+            //3. update it with the details of the new podcast
+            AddPodcastItemToDocument(doc, podcastPost);
+
+            //3.5 save a copy of the file locally
+            SaveRssFeedLocally(doc);
+
+            //4. delete the existing feed
+            //http://windows7vm/wordpress/wp-json/wp/v2/media/2663?force=true
+            WordPressResult deleteMediaResult = _wordPressService.DeleteMedia(media.id);
+            if(!deleteMediaResult.IsSuccess)
+            {
+                throw new InvalidOperationException("Error deleting the existing RSS feed");
+            }
+
+            //5. create the new one
+            WordPressResult addMediaResult = _wordPressService.AddMedia("scfFeed.xml", "text/xml");
+            //http://windows7vm/wordpress/wp-json/wp/v2/media
+
+            //6. download the media to make sure it is there
+            //- validate it against a schema??
         }
 
         private string ReadTemplate()
@@ -202,5 +239,91 @@ namespace ScfPodcastUploader.Services
             throw new ArgumentOutOfRangeException(nameof(month));
         }
 
+        private XDocument GetRssFeedAsXml(string url)
+        {
+            HttpClient client = CreateHttpClient();
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            if(!response.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException("Unable to retrieve the RSS feed from: " + url);
+            }
+
+            string xmlString = response.Content.ReadAsStringAsync().Result;
+
+            return XDocument.Parse(xmlString);
+        }
+
+        private HttpClient CreateHttpClient()
+        {
+            Configuration configuration = _configurationService.Configuration;
+
+            var httpClientHandler = new HttpClientHandler
+            {
+                Proxy = new MyProxy(configuration.GetProxyUriString()),
+                UseProxy = configuration.UseProxy
+            };
+
+            return new HttpClient(httpClientHandler);
+        }
+
+        private void AddPodcastItemToDocument(XDocument doc, PodcastPost podcastPost)
+        {
+            XElement newItemElem = CreateRssFeedItemXElement(podcastPost);
+
+            XElement firstItem = doc.Descendants().SingleOrDefault(e => e.Name.LocalName == "item");
+
+            if(firstItem != null)
+            {
+                firstItem.AddBeforeSelf(newItemElem);
+            }
+            else
+            {
+                //no items...
+                throw new InvalidOperationException("RSS feed does not contain any items - please upload a proper file"); 
+            }
+        }
+
+        private XElement CreateRssFeedItemXElement(PodcastPost podcastPost)
+        {
+            string itemTemplate = ReadRssFeedItemTemplate();
+
+            string substitutedTemplate = string.Format(itemTemplate,
+                GetTitlePrefixedWithDate(podcastPost), //0
+                podcastPost.Speaker, //1
+                podcastPost.PodcastPostUrl, //2
+                podcastPost.PodcastMediaUrl, //3
+                podcastPost.GetMediaSizeInBytes(), //4
+                podcastPost.GetDateInRssFormat() //5
+            );
+
+            return XElement.Parse(substitutedTemplate);
+        }
+
+        private string ReadRssFeedItemTemplate()
+        {
+            string templatePath = _configurationService.Configuration.RssFeedItemTemplatePath;
+            if(!File.Exists(templatePath))
+            {
+                throw new ArgumentException("RssFeedItemTemplatePath not specified");
+            }
+
+            return File.ReadAllText(_configurationService.Configuration.RssFeedItemTemplatePath);
+        }
+
+        private void SaveRssFeedLocally(XDocument doc)
+        {
+            StringBuilder sb = new StringBuilder();
+            XmlWriterSettings xws = new XmlWriterSettings();
+            xws.OmitXmlDeclaration = true;
+            xws.Indent = true;
+
+            using (XmlWriter xw = XmlWriter.Create(sb, xws))
+            {
+                doc.Save(xw);
+            }
+
+            File.WriteAllText("scfFeed.xml", sb.ToString());
+        }
     }
 }

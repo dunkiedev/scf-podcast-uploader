@@ -56,10 +56,69 @@ namespace ScfPodcastUploader.Services.WordPress
             }
         }
 
-        public WordPressResult AddMedia(string filepath)
+        public WordPressResult AddMedia(string filepath, string mimeType)
         {
             //TODO add error handling
-            return UploadFile(filepath, WordPressMediaUrl, "audio/mp3");
+            return UploadFile(filepath, WordPressMediaUrl, mimeType);
+        }
+
+        public WordPressResult DeleteMedia(int id)
+        {
+            HttpClient client = CreateHttpClient();
+
+            string url = WordPressMediaUrl + $"/{id}?force=true";
+            var response = client.GetAsync(url).Result;
+
+            if(response.IsSuccessStatusCode)
+            {
+                return new WordPressResult()
+                {
+                    IsSuccess = true,
+                    Id = id
+                };
+            }
+            else
+            {
+                //TODO get error details and add them to the result
+                return new WordPressResult()
+                {
+                    IsSuccess = false,
+                };
+            }
+        }
+
+        public WordPressMedia FindMediaByTitle(string title)
+        {
+            HttpClient client = CreateHttpClient();
+
+            string url = WordPressMediaUrl + $"?filter[title]={title}";
+            var response = client.GetAsync(url).Result;
+
+            if(response.IsSuccessStatusCode)
+            {
+                string resultString = response.Content.ReadAsStringAsync().Result;
+                JArray jsonResult = JArray.Parse(resultString);
+
+                if(jsonResult.Count == 0)
+                {
+                    throw new InvalidOperationException("Could not find a WordPress media item with the title " + title);
+                }
+                else if(jsonResult.Count > 1)
+                {
+                    throw new InvalidOperationException("Found more than one media item claiming to be the RSS feed!");
+                }
+
+                return new WordPressMedia()
+                {                    
+                    id = (int)jsonResult[0]["id"],
+                    title = (string)jsonResult[0]["title"]["rendered"],
+                    source_url = (string)jsonResult[0]["source_url"]
+                };
+            }
+            else
+            {
+                throw new InvalidOperationException($"Error retrieving RSS feed: status={response.StatusCode}, message={response.ToString()}");
+            }
         }
 
         /// <summary>

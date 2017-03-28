@@ -34,7 +34,11 @@ namespace ScfPodcastUploader.Domain.Config
             return $"http://{ProxyHost}:{(ProxyPort == null ? 80 : ProxyPort)}";
         }
 
-        public string PostTemplatePath { get; set; }
+        /// <summary>
+        /// Path to the file holding the template of the podcast post.
+        /// </summary>
+        /// <returns></returns>
+        public string PostTemplatePath { get; set; } = "podcast-post-template.html";
 
         public int WordPressPodcastCategoryId { get; set; }
 
@@ -57,12 +61,18 @@ namespace ScfPodcastUploader.Domain.Config
         /// file is created with an encoding of 9, which is what we usually use.
         /// </summary>
         /// <returns></returns>
-        public int VbrBitrate { get; set; }
+        public int VbrBitrate { get; set; } = 9;
 
         /// <summary>
         /// Path to the metadata path that stores the ID3 tags - in ffmpeg format.
         /// </summary>
         /// <returns></returns>
-        public string FfmpegMetadataTemplatePath { get; set; }
+        public string FfmpegMetadataTemplatePath { get; set; } = "metadata-template.txt";
+
+        /// <summary>
+        /// Path to the template holding the RSS item XML template
+        /// </summary>
+        /// <returns></returns>
+        public string RssFeedItemTemplatePath { get; set; } = "RssFeedItemTemplate.xml";
     }
 }

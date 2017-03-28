@@ -7,6 +7,10 @@ namespace ScfPodcastUploader.Services.WordPress
     {
          WordPressResult AddPost(WordPressPost post);
 
-         WordPressResult AddMedia(string filepath);
+         WordPressResult AddMedia(string filepath, string mimeType);
+
+         WordPressMedia FindMediaByTitle(string title);
+
+         WordPressResult DeleteMedia(int id);
     }
 }
