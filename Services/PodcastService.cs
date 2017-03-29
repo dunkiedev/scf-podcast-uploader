@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 using log4net;
@@ -271,7 +270,7 @@ namespace ScfPodcastUploader.Services
         {
             XElement newItemElem = CreateRssFeedItemXElement(podcastPost);
 
-            XElement firstItem = doc.Descendants().SingleOrDefault(e => e.Name.LocalName == "item");
+            XElement firstItem = doc.Descendants().FirstOrDefault(e => e.Name.LocalName == "item");
 
             if(firstItem != null)
             {

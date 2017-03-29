@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using ScfPodcastUploader.Core;
 
 namespace ScfPodcastUploader.Domain
 {
@@ -91,7 +92,7 @@ namespace ScfPodcastUploader.Domain
         /// <returns></returns>
         public string GetDateInRssFormat()
         {
-            return Date.ToString("ddd, dd MMM yyyy HH:mm:ss K");
+            return Date.ToRFC822String();
         }
     }
 }

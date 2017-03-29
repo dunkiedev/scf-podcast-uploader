@@ -67,7 +67,7 @@ namespace ScfPodcastUploader.Services.WordPress
             HttpClient client = CreateHttpClient();
 
             string url = WordPressMediaUrl + $"/{id}?force=true";
-            var response = client.GetAsync(url).Result;
+            var response = client.DeleteAsync(url).Result;
 
             if(response.IsSuccessStatusCode)
             {

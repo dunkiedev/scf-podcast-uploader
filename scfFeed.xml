@@ -1,0 +1,558 @@
+<rss xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
+  <channel>
+    <title>Shenley Christian Fellowship Podcast</title>
+    <description>The SCF Podcast is a weekly podcast of the Sunday morning talk from Shenley Christian Fellowship, a church based in Milton Keynes, England. Talks are given by our senior church leader, Ross Dilnot, as well as other members of the church, and visiting speakers.</description>
+    <link>http://www.scf-mk.org.uk</link>
+    <copyright>SCF 2015.  For personal use only.</copyright>
+    <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+    <language>en-gb</language>
+    <lastBuildDate>Sun, 24 Oct 2010 21:28:00 +0100</lastBuildDate>
+    <pubDate>Wed, 14 Mar 2007 21:52:00 +0100</pubDate>
+    <image>
+      <url>http://www.scf-mk.org.uk/downloads/podcasts/scfLogo.gif</url>
+      <title>Shenley Christian Fellowship Podcast</title>
+      <link>http://www.scf-mk.org.uk</link>
+      <width>57</width>
+      <height>68</height>
+    </image>
+    <!-- START iTunes-specific tagging :: Can be added at the itemlevel, too -->
+    <itunes:author>Shenley Christian Fellowship</itunes:author>
+    <itunes:subtitle>Weekly Sunday morning sermon from SCF in Milton Keynes, England</itunes:subtitle>
+    <itunes:summary>The SCF Podcast is a weekly podcast of the Sunday morning talk from Shenley Christian Fellowship, a church based in Milton Keynes, England. Talks are given by our church leaders, as well as other members of the church, and visiting speakers.</itunes:summary>
+    <itunes:owner>
+      <itunes:name>Shenley Christian Fellowship</itunes:name>
+      <itunes:email>admin@scf-mk.org.uk</itunes:email>
+    </itunes:owner>
+    <itunes:link rel="image" type="video/jpeg" href="http://www.scf-mk.org.uk/downloads/podcasts/scfLogo.gif">Shenley Christian Fellowship</itunes:link>
+    <itunes:category text="Religion &amp; Spirituality">
+      <itunes:category text="Christianity" />
+    </itunes:category>
+    <itunes:explicit>no</itunes:explicit>
+    <!-- END iTunes-specific tagging -->
+    <item>
+      <title>29th March 2017 - Automating the Church - Part 2</title>
+      <description>Ross Dilnot</description>
+      <link>http://windows7vm/wordpress/podcast/29th-march-2017-automating-the-church-part-2/</link>
+      <enclosure url="http://windows7vm/wordpress/wp-content/uploads/SCF_2017-03-29.mp3" length="250454" type="audio/mpeg"></enclosure>
+      <pubDate>Wed, 29 Mar 2017 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>19 March 2017 - Gifting</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/19th-march-2017-gifting/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2017-03-19.mp3" length="12815917" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 19 Mar 2017 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>5 March 2017 - Hosting the Presence of God</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/5th-march-2017-hosting-the-presence-of-god/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2017-03-05.mp3" length="15672298" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 05 Mar 2017 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>26 February 2017 - The Function of the Church - Part 6 - To Challenge</title>
+      <description>Jenny Joyce</description>
+      <link>http://www.scf-mk.org.uk/podcast/26th-february-2017-the-function-of-the-church-part-6-to-challenge/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2017-02-26.mp3" length="11089101" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 26 Feb 2017 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>12 February 2017 - The Function of the Church - Part 4 - To Worship</title>
+      <description>Tim Williams</description>
+      <link>http://www.scf-mk.org.uk/podcast/12th-february-2017-the-function-of-the-church-part-4-to-worship/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2017-02-12.mp3" length="11603080" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 12 Feb 2017 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>5 February 2017 - Disappointment</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/5th-february-2017-disappointment/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2017-02-05.mp3" length="14750694" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 05 Feb 2017 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>29 January 2017 - The Function of the Church - Part 3 - To Heal</title>
+      <description>Mike Preece</description>
+      <link>http://www.scf-mk.org.uk/podcast/29th-january-2017-the-function-of-the-church-part-3-to-heal/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2017-01-29.mp3" length="15370089" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 29 Jan 2017 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>15 January 2017 - The Function of the Church - Part 1 - Love</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/15th-january-2017-the-function-of-the-church-part-1-love/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2017-01-15.mp3" length="14855066" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 15 Jan 2017 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>13 November 2016 - Living the Jesus Life - Part 5 - Submission to God</title>
+      <description>Jim Hammett</description>
+      <link>http://www.scf-mk.org.uk/podcast/13th-november-2016-living-the-jesus-life-part-5-submission-to-god/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-11-13.mp3" length="10687011" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 13 Nov 2016 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>30 October 2016 - Living the Jesus Life - Part 4 - Taming the Tongue</title>
+      <description>Caroline Swann</description>
+      <link>http://www.scf-mk.org.uk/podcast/30th-october-2016-living-the-jesus-life-part-4-submission-to-god/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-10-30.mp3" length="14865294" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 30 Oct 2016 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>16 October 2016 - Living the Jesus Life - Part 2 - Favouritism Forbidden</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/16th-october-2016-living-the-jesus-life-part-2-favouritism-forbidden/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-10-16.mp3" length="10565119" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 16 Oct 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>15 October 2016 - Oak Tree Centre Commissioning Service</title>
+      <description>Prayers by local and regional ministers, and sermon by Mark Sherratt</description>
+      <link>http://www.scf-mk.org.uk/podcast/15th-october-2016-oak-tree-centre-commissioning-service/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-10-15_CommissioningService.mp3" length="13746681" type="audio/mpeg"></enclosure>
+      <pubDate>Sat, 15 Oct 2016 14:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>9 October 2016 - Living the Jesus Life - Part 1 - Trials and Temptations</title>
+      <description>Joy Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/9th-october-2016-living-the-jesus-life-part-1-trials-and-temptations/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-10-09.mp3" length="8909438" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 09 Oct 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>2 October 2016 - Casting the Vision - Year 2</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/2nd-october-2016-casting-the-vision-year-2/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-10-02.mp3" length="16565624" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 02 Oct 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>25 September 2016 - Navigating Change</title>
+      <description>Danny Conibere</description>
+      <link>http://www.scf-mk.org.uk/podcast/25th-september-2016-navigating-change/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-09-25.mp3" length="14327688" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 25 Sep 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>18 September 2016 - Take Up Your Cross</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/18th-september-2016-take-up-your-cross/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-09-18.mp3" length="15936263" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 18 Sep 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>11 September 2016 - The Day God Saved My Life</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/11th-september-2016-the-day-god-saved-my-life/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-09-11.mp3" length="21172688" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 11 Sep 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>28 August 2016 - Living a Thankful Life</title>
+      <description>Richard Wightman</description>
+      <link>http://www.scf-mk.org.uk/podcast/28th-august-2016-living-a-thankful-life/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-08-28.mp3" length="11898848" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 28 Aug 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>14 August 2016 - Reflections on Epistle of 1 John (Part 5)</title>
+      <description>Richard Clark</description>
+      <link>http://www.scf-mk.org.uk/podcast/14th-august-2016-reflections-on-epistle-of-1-john-part-5/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-08-14.mp3" length="11755088" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 14 Aug 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>26 June 2016 - How To Receive Revelation - Part 2</title>
+      <description>Caroline Swann and Mike Jobling</description>
+      <link>http://www.scf-mk.org.uk/podcast/26th-june-2016-how-to-receive-revelation-part-2//</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-06-26.mp3" length="14151141" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 26 Jun 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>19 June 2016 - How To Receive Revelation - Part 1</title>
+      <description>Caroline Swann and Mike Jobling</description>
+      <link>http://www.scf-mk.org.uk/podcast/19th-june-2016-how-to-receive-revelation-part-1/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-06-19.mp3" length="13985688" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 19 Jun 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>29 May 2016 - Let's Pretend</title>
+      <description>Mike Jobling</description>
+      <link>http://www.scf-mk.org.uk/podcast/29th-may-2016-lets-pretend/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-05-29.mp3" length="8799927" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 29 May 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>22 May 2016 - Freedom from a Religious Spirit</title>
+      <description>Dave Eyeington</description>
+      <link>http://www.scf-mk.org.uk/podcast/freedom-from-a-religious-spirit/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-05-22.mp3" length="14576379" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 22 May 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>15 May 2016 - Keys to Powerful Living - Freedom from Identity Struggles</title>
+      <description>Harvey Moore</description>
+      <link>http://www.scf-mk.org.uk/podcast/15th-may-2016-keys-to-powerful-living-freedom-from-identity-struggles/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-05-15.mp3" length="12090204" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 15 May 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>24 April 2016 - Growing by sowing and reaping</title>
+      <description>Mike Jobling</description>
+      <link>http://www.scf-mk.org.uk/podcast/24th-april-2016-growing-by-sowing-and-reaping/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-04-24.mp3" length="10646679" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 24 Apr 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>17 April 2016 - Facing the storm with Jesus</title>
+      <description>Jacqui Green</description>
+      <link>http://www.scf-mk.org.uk/podcast/17th-april-2016-facing-the-storm-with-jesus/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-04-17.mp3" length="10045341" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 17 Apr 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>10 April 2016 - Church of Power</title>
+      <description>Mike Jobling</description>
+      <link>http://www.scf-mk.org.uk/podcast/10th-april-2016-the-blame-game/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-04-10.mp3" length="8537179" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 10 Apr 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>27 March 2016 - Church of Power</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/27th-march-2016-church-of-power/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-03-27.mp3" length="10457106" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 27 Mar 2016 11:00:00 +0100</pubDate>
+    </item>
+    <item>
+      <title>13 March 2016 - Finding God's Purpose for your Life</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/13th-march-2016-finding-gods-purpose-for-your-life/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-03-13.mp3" length="9783453" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 13 Mar 2016 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>6 March 2016 - Vision, Values and Culture series - Vision</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/6th-march-2016-vision-values-and-culture-series-vision/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-03-06.mp3" length="12116001" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 06 Mar 2016 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>28 February 2016 - Generous Giving - Doing Our Part!</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/28th-february-2016-generous-giving-doing-our-part/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-02-28.mp3" length="14833412" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 28 Feb 2016 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>21 February - Wells</title>
+      <description>Steve Hepden</description>
+      <link>http://www.scf-mk.org.uk/podcast/21st-february-2016-wells/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-02-21.mp3" length="10182710" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 21 Feb 2016 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>31 January 2016 - Encounters by the Sea - A Terrifying Love</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/31st-january-2016-encounters-by-the-sea-a-terrifying-love/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-01-31.mp3" length="13415516" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 31 Jan 2016 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>24 January 2016 - Encounters by the Sea - Experiencing Provision</title>
+      <description>Caroline Swann</description>
+      <link>http://www.scf-mk.org.uk/podcast/24th-january-2016-encounters-by-the-sea-experiencing-provision/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-01-24.mp3" length="15498089" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 24 Jan 2016 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>10 January 2016 - Encounters by the Sea - Defeating Evil</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/10th-january-2016-encounters-by-the-sea-defeating-evil/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-01-10.mp3" length="16478704" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 10 Jan 2016 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>3 January 2016 - Encounters by the Sea - The Called</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/3rd-january-2016-encounters-by-the-sea-the-called/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2016-01-03.mp3" length="19606009" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 03 Jan 2016 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>20 December 2015 - Christmas Hope</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/20th-december-2015-christmas-hope/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-12-20.mp3" length="7456751" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 20 Dec 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>13 December 2015 - A Culture of Worship</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/13th-december-2015-a-culture-of-worship/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-12-13.mp3" length="20689554" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 13 Dec 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>6 December 2015 - Honour and Boundaries</title>
+      <description>Dave Eyeington</description>
+      <link>http://www.scf-mk.org.uk/podcast/6th-december-2015-honour-and-boundaries/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-12-06.mp3" length="24469163" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 06 Dec 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>22 November 2015 - A Divine Encounter - Part 3 - Who is the Holy Spirit?</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/22nd-november-2015-a-divine-encounter-part-3-who-is-the-holy-spirit/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-11-22.mp3" length="18994136" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 22 Nov 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>15 November 2015 - A Divine Encounter - Part 2 - Who is Jesus?</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/15th-november-2015-a-divine-encounter-part-2-who-is-jesus/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-11-15.mp3" length="19156921" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 15 Nov 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>8 November 2015 - A Divine Encounter - Part 1 - Who is Father God?</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/1682/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-11-08.mp3" length="19466216" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 08 Nov 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>1 November 2015 - Called to Care Service</title>
+      <description>Mike Jobling</description>
+      <link>http://www.scf-mk.org.uk/podcast/1st-november-2015-called-to-care-service/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-11-01.mp3" length="8948457" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 01 Nov 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>25 October 2015 - How to Eat an Elephant - Week 5 - Moving Past Regret</title>
+      <description>Joy Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/25th-october-2015-how-to-eat-an-elephant-week-5-moving-past-regret/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-10-25.mp3" length="16942351" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 25 Oct 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>11 October 2015 - How to Eat an Elephant - Week 3 - Breaking Free From the Past</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/11th-october-2015-how-to-eat-an-elephant-week-3-breaking-free-from-the-past/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-10-11.mp3" length="20345585" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 11 Oct 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>4 October 2015 - How to Eat an Elephant - Week 2 - Willing to Fail</title>
+      <description>Jenny Joyce</description>
+      <link>http://www.scf-mk.org.uk/podcast/4th-october-2015-how-to-eat-an-elephant-week-2-willing-to-fail/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-10-04.mp3" length="15836641" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 04 Oct 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>27 September 2015 - How to Eat an Elephant - Week 1</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/27th-september-2015-how-to-eat-an-elephant-week-1/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-09-27.mp3" length="10553219" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 27 Sep 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>20 September 2015 - All Community Great and Small</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/20th-september-2015-all-community-great-and-small/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-09-20.mp3" length="12035718" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 20 Sep 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>13 September 2015 - Stewardship</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/13th-september-stewardship/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-09-13.mp3" length="14922962" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 13 Sep 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>6 September 2015 - Casting the Vision</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/6th-september-2015-casting-the-vision/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-09-06.mp3" length="20218930" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 06 Sep 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>23 August 2015 - The Call of Samuel - Keys to becoming a  prophetic people</title>
+      <description>Caroline Swann</description>
+      <link>http://www.scf-mk.org.uk/podcast/the-call-of-samuel-keys-to-becoming-a-prophetic-people/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-08-23.mp3" length="20506110" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 23 Aug 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>16 August 2015 - Comfort</title>
+      <description>Richard Clark</description>
+      <link>http://www.scf-mk.org.uk/podcast/16th-august-2015-comfort/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-08-16.mp3" length="17104289" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 16 Aug 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>8 August 2015 - Ephesians Part 10 - Strength in Jesus</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/ephesians-part-10-strength-in-jesus/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-08-08.mp3" length="18038456" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 8 Aug 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>26 July 2015 - Extravagant Love</title>
+      <description>Jacqui Green</description>
+      <link>http://www.scf-mk.org.uk/podcast/26th-july-2015-extravagant-love/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-07-26.mp3" length="15070926" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 26 Jul 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>19 July 2015 - Ephesians Part 9 - Family Life in Jesus Part 2: Children, Fathers, Slaves &amp; Masters</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/19th-july-2015-ephesians-part-9-family-life-in-jesus-part-1-children-fathers-slaves-masters/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/SCF_2015-07-19.mp3" length="17301013" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 19 Jul 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>12 July 2015 - Ephesians Part 8 - Family Life in Jesus Part 1: Marriage</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/12th-july-2015-ephesians-part-8-family-life-in-jesus-part-1-marriage/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/07/SCF_2015-07-12.mp3" length="21925921" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 12 Jul 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>5 July 2015 - Ephesians Part 7 - Life in the Light of Jesus</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/5th-july-2015-ephesians-part-7-life-in-the-light-of-jesus/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/07/SCF_2015-07-05.mp3" length="23588545" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 5 Jul 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>28 June 2015 - Ephesians Part 6 - Unity in the Church</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/28th-june-2015-ephesians-part-6-unity-in-the-church/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/07/SCF_2015-06-28.mp3" length="16100798" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 28 Jun 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>21 June 2015 - The Road Ahead</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/21st-june-2015-the-road-ahead/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/06/SCF_2015-06-21.mp3" length="15176876" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 21 Jun 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>7 June 2015 - Ephesians Part 5 - The Mystery of the Church</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/7th-june-2015-ephesians-part-5-the-mystery-of-the-church/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/06/SCF_2015-06-07.mp3" length="17884236" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 07 Jun 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>31 May 2015 - Ephesians Part 4 - One in Jesus</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/31st-may-2015-ephesians-part-4-one-in-jesus/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/06/SCF_2015-05-31.mp3" length="16616344" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 31 May 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>24 May 2015 - Ephesians Part 3 - God's handiwork</title>
+      <description>Mike Jobling</description>
+      <link>http://www.scf-mk.org.uk/podcast/24th-may-2015-ephesians-part-3-gods-handiwork/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/05/SCF_2015-05-24.mp3" length="19312394" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 24 May 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>17 May 2015 - Ephesians Part 2 - Thanksgiving Prayer and Power</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/17th-may-2015-ephesians-part-2-thanksgiving-prayer-power/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/05/SCF_2015-05-17.mp3" length="18621518" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 17 May 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>10 May 2015 - Spiritual Blessings in Jesus</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/10th-may-2015-ephesians-part-1-spiritual-blessings-in-jesus/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/05/SCF_2015-05-10.mp3" length="17274646" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 10 May 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>3 May 2015 - Identity</title>
+      <description>Dave Eyeington</description>
+      <link>http://www.scf-mk.org.uk/podcast/3rd-may-2015-identity/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/05/SCF_2015-05-03.mp3" length="15261718" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 03 May 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>26 Apr 2015 - Divine Guidance Part 3 - The Holy Spirit</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/26th-april-2015-divine-guidance-part-3-the-holy-spirit/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/05/SCF_2015-04-26.mp3" length="16269029" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 26 Apr 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>19 Apr 2015 - Divine Guidance Part 2 - The Prayer</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/19th-april-2015-divine-guidance-the-prayer/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/04/SCF_2015-04-19.mp3" length="18154849" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 19 Apr 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>12 Apr 2015 - Divine Guidance Part 1</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/12th-april-2015-divine-guidance-part-1/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/04/SCF_2015-04-12.mp3" length="17431557" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 12 Apr 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>05 Apr 2015 - Easter Sunday</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/5th-april-2015-easter-sunday/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/04/SCF_2015-04-05.mp3" length="5359013" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 05 Apr 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>29 Mar 2015 - The Good Shepherd</title>
+      <description>Rachel Hickson</description>
+      <link>http://www.scf-mk.org.uk/podcast/29th-march-2015-the-good-shepherd/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/03/SCF_2015-03-29.mp3" length="27239392" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 29 Mar 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>22 Mar 2015 - School of Supernatural Life (interviews and sermon)</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/22nd-march-2015-school-of-supernatural-life-interview-and-sermon/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/03/SCF_2015-03-22.mp3" length="27581508" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 22 Mar 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>15 Mar 2015 - Sex, Money and Power - Part 3</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/15th-march-2015-sex-money-and-power-part-3/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/03/SCF_2015-03-15.mp3" length="20367735" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 15 Mar 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>08 Mar 2015 - Sex, Money and Power - Part 2</title>
+      <description>Ross Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/8th-march-2015-sex-money-and-power-part-2/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/03/SCF_2015-03-08.mp3" length="19659085" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 08 Mar 2015 11:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>01 Mar 2015 - Sex, Money and Power - Part 1</title>
+      <description>Joy Dilnot</description>
+      <link>http://www.scf-mk.org.uk/podcast/1st-march-2015-sex-money-and-power-part-1/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/03/SCF_2015-03-01.mp3" length="18545640" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 01 Mar 2015 22:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>22 Feb 2015 - The Message of the Cross</title>
+      <description>Phil Lucas</description>
+      <link>http://www.scf-mk.org.uk/podcast/22nd-february-2015-the-message-of-the-cross/</link>
+      <enclosure url="http://www.scf-mk.org.uk/wp-content/uploads/2015/02/SCF_2015-02-22.mp3" length="18813547" type="audio/mpeg"></enclosure>
+      <pubDate>Sun, 22 Feb 2015 22:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>

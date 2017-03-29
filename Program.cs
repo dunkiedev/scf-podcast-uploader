@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
@@ -35,6 +34,7 @@ namespace ScfPodcastUploader
                 _logger.Error("Fatal exception was thrown", ex);
             }
         }
+
         private readonly IPodcastService _podcastService;
 
         public Program(IPodcastService podcastService)
@@ -46,10 +46,10 @@ namespace ScfPodcastUploader
         {
             PodcastPost podcastPost = new PodcastPost()
             {
-                Title = "Automating the Church",
+                Title = "Automating the Church - Part 2",
                 Speaker = "Ross Dilnot",
                 BibleText = "Psalm 16:11, 1 Samuel 16:21-23, Acts 2:1-41, Acts 5:12-16, Acts 19:11-12",
-                Date = new DateTime(2017, 3, 19, 11, 0 , 0),
+                Date = new DateTime(2017, 3, 29, 11, 0 , 0),
                 // AudioFilePath = "/Users/phil/Documents/Shenley/SCF Podcast/SCF_2017-03-05.mp3",
                 AudioFilePath = "/Users/phil/Documents/Shenley/SCF Podcast/To Do/test.wav",
             };
@@ -70,7 +70,7 @@ namespace ScfPodcastUploader
             podcastPost.PodcastPostUrl = createPostResult.Url;
             
             //update the RSS feed
-            _podcastService.UpdateRssFeed(podcastPost);
+            UpdateRssFeed(podcastPost);
         }
 
         private PodcastPost PromptUserForPodcastDetails()
@@ -213,6 +213,17 @@ namespace ScfPodcastUploader
             }
 
             return result;
+        }
+
+        private void UpdateRssFeed(PodcastPost podcastPost)
+        {
+            Console.Write("Updating RSS feed... ");
+            _logger.Info("Updating RSS feed");
+
+            _podcastService.UpdateRssFeed(podcastPost);
+
+            Console.WriteLine("Success!");
+            _logger.Info("RSS feed updated");
         }
     }
 }

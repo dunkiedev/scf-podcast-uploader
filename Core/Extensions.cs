@@ -6,6 +6,13 @@ namespace ScfPodcastUploader.Core
 {
     public static class Extensions
     {
+        public static string ToRFC822String(this DateTime timestamp)
+        {
+            return timestamp.ToString("ddd',' d MMM yyyy HH':'mm':'ss")
+                + " "
+                + timestamp.ToString("zzzz").Replace(":", "");
+        }
+        
         public static Stream GetRequestStreamWithTimeout(
             this WebRequest request,
             int? millisecondsTimeout = null)
