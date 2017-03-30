@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using Microsoft.Extensions.Configuration;
 using ScfPodcastUploader.Domain.Config;
 
 namespace ScfPodcastUploader.Services.Config
@@ -9,20 +11,14 @@ namespace ScfPodcastUploader.Services.Config
 
         public ConfigurationService()
         {
-            _configuration = new Configuration
-            {
-                WordPressBaseAddress = "http://windows7vm/wordpress",
-                ProxyHost = "windows7vm",
-                ProxyPort = 8888,
-                UseProxy = true,
-                AuthMethod = "BASIC",
-                BasicAuthUsername = "admin2",
-                BasicAuthPassword = "Passw0rd",
-                WordPressPodcastCategoryId = 6, //Podcast
-                WordPressAuthorId = 3, //admin2
-                PodcastAudioFolder = "/Users/phil/Documents/Shenley/SCF Podcast/automated",
-                IntroWavFilePath = "/Users/phil/Documents/Shenley/SCF Podcast/To Do/Intro.wav"
-            };
+            IConfigurationBuilder builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+
+            IConfigurationRoot configurationRoot = builder.Build();
+
+            _configuration = new Configuration();
+            configurationRoot.GetSection("App").Bind(_configuration);
         }
         public Configuration Configuration => _configuration;
     }
