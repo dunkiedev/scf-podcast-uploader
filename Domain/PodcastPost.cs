@@ -45,7 +45,7 @@ namespace ScfPodcastUploader.Domain
             }
             // Adjust the format string to your preferences. For example "{0:0.#}{1}" would
             // show a single decimal place, and no space.
-            return string.Format("{0:0.#}{1}", len, sizes[2]);
+            return string.Format("{0:0.#}{1}", len, sizes[order]);
         }
 
         /// <summary>
