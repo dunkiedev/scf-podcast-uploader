@@ -1,13 +1,13 @@
 SCF Podcast Uploader ToDo
 -------------------------
 
-- be able to read in the details from a file (e.g. run with -i (input) option)
 - integrate with oauth
 - correct the feed - itunes elements are not quite right
 - configuration property for ffmpeg command
 - work out how to publish the application
 PART error handling
 
+DONE be able to read in the details from a file (e.g. run with -i (input) option)
 DONE read in configuration settings from a config file (JSON?)
 DONE bug: size of file is of the WAV file, not the MP3 file, so is huge
 DONE work out how to upload the feed file

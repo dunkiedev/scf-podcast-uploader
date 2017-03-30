@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using log4net;
 using log4net.Config;
 using log4net.Repository;
+using Microsoft.Extensions.Configuration;
 using ScfPodcastUploader.Domain;
 using ScfPodcastUploader.Domain.WordPress;
 using ScfPodcastUploader.Services;
@@ -27,7 +29,7 @@ namespace ScfPodcastUploader
 
             try
             {
-                program.Run();
+                program.Run(args);
             }
             catch (Exception ex)
             {
@@ -42,19 +44,20 @@ namespace ScfPodcastUploader
             _podcastService = podcastService;
         }
 
-        public void Run()
+        public void Run(string[] args)
         {
-            PodcastPost podcastPost = new PodcastPost()
-            {
-                Title = "Automating the Church - Part 2",
-                Speaker = "Ross Dilnot",
-                BibleText = "Psalm 16:11, 1 Samuel 16:21-23, Acts 2:1-41, Acts 5:12-16, Acts 19:11-12",
-                Date = new DateTime(2017, 3, 29, 11, 0 , 0),
-                // AudioFilePath = "/Users/phil/Documents/Shenley/SCF Podcast/SCF_2017-03-05.mp3",
-                AudioFilePath = "/Users/phil/Documents/Shenley/SCF Podcast/To Do/test.wav",
-            };
+            CommandLineArgs commandLineArgs = ParseArgs(args);
 
-            // PodcastPost podcastPost = PromptUserForPodcastDetails();
+            //where should we get the podcast details from?
+            PodcastPost podcastPost;
+            if(commandLineArgs.IsInteractive)
+            {
+                podcastPost = PromptUserForPodcastDetails();
+            }
+            else
+            {
+                podcastPost = LoadDetailsFromFile();
+            }
 
             //create the MP3 file
             podcastPost.AudioFilePath = CreateMp3File(podcastPost.AudioFilePath, podcastPost);
@@ -225,5 +228,66 @@ namespace ScfPodcastUploader
             Console.WriteLine("Success!");
             _logger.Info("RSS feed updated");
         }
+
+        private CommandLineArgs ParseArgs(string[] args)
+        {
+            CommandLineArgs commandLineArgs = new CommandLineArgs();
+
+            if(args.Length == 1)
+            {
+                if(new string []{"-i", "--i", "/i"}.Contains(args[0]))
+                {
+                    commandLineArgs.IsInteractive = true;
+                }
+            }
+            else if(args.Length != 0)
+            {
+                Console.WriteLine("Usage: ScfPodcastUploader [-i]");
+                Console.WriteLine("-i = enter details interactively");
+                Console.WriteLine("If the -i argument is not passed then details are read from PodcastDetails.ini");
+                Environment.Exit(-1);
+            }
+
+            return commandLineArgs;
+        }
+
+        private PodcastPost LoadDetailsFromFile()
+        {
+            IConfigurationBuilder builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddIniFile("PodcastDetails.ini");
+
+            IConfigurationRoot config = builder.Build();
+
+            string title = config["PodcastDetails:Title"];
+            string speaker = config["PodcastDetails:Speaker"];
+            string bibleText = config["PodcastDetails:BibleText"];
+            string dateString = config["PodcastDetails:Date"];
+            string audioFilePath = config["PodcastDetails:AudioFilePath"];
+
+            DateTime date; 
+            if(!DateTime.TryParseExact(dateString, new[] { "dd/MM/yyyy", "d/MM/yyyy", "dd/M/yyyy" }, null, DateTimeStyles.None, out date))
+            {
+                throw new ArgumentException("The date in the PodcastDetails.ini file must be in the format dd/mm/yyyy e.g. 31/01/2017");
+            }
+
+            return new PodcastPost
+            {
+                Title = title,
+                Speaker = speaker,
+                BibleText = bibleText,
+                Date = date.AddHours(11),   //set the date to 11am
+                AudioFilePath = audioFilePath
+            };
+        }
+    }
+
+    public class CommandLineArgs
+    {
+        /// <summary>
+        /// Indicates if the user wants to enter the details interactively.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsInteractive { get; set; }
     }
 }
