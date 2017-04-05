@@ -10,6 +10,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Ini" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="OAuth.DotNetCore" Version="1.0.4" />
     <PackageReference Include="StructureMap" Version="4.4.3" />
   </ItemGroup>
 </Project>

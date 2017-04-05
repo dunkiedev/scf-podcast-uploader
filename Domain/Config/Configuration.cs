@@ -24,6 +24,14 @@ namespace ScfPodcastUploader.Domain.Config
 
         public string BasicAuthPassword { get; set; }
 
+        public string OAuthConsumerKey { get; set; }
+
+        public string OAuthConsumerSecret { get; set; }
+
+        public string OAuthToken { get; set; }
+
+        public string OAuthTokenSecret { get; set; }
+
         public string GetBasicAuthString()
         {
             return Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(BasicAuthUsername + ":" + BasicAuthPassword));

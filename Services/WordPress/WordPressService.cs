@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Specialized;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using OAuth;
 using ScfPodcastUploader.Core;
 using ScfPodcastUploader.Domain;
 using ScfPodcastUploader.Domain.Config;
@@ -17,6 +19,14 @@ namespace ScfPodcastUploader.Services.WordPress
 {
     public class WordPressService : IWordPressService
     {
+        private static class HttpMethods
+        {
+            public const string Delete = "DELETE";
+            public const string Get = "GET";
+            public const string Post = "POST";
+            public const string Put = "PUT";
+        }
+
         private string WordPressPostsUrl => _configurationService.Configuration.WordPressBaseAddress + "/wp-json/wp/v2/posts";
         private string WordPressMediaUrl => _configurationService.Configuration.WordPressBaseAddress + "/wp-json/wp/v2/media";
         private readonly IConfigurationService _configurationService;
@@ -28,7 +38,7 @@ namespace ScfPodcastUploader.Services.WordPress
 
         public WordPressResult AddPost(WordPressPost post)
         {
-            HttpClient client = CreateHttpClient();
+            HttpClient client = CreateHttpClient(WordPressPostsUrl, HttpMethods.Post);
 
             var content = new StringContent(JsonConvert.SerializeObject(post).ToString(), Encoding.UTF8, "application/json");
 
@@ -64,9 +74,12 @@ namespace ScfPodcastUploader.Services.WordPress
 
         public WordPressResult DeleteMedia(int id)
         {
-            HttpClient client = CreateHttpClient();
-
             string url = WordPressMediaUrl + $"/{id}?force=true";
+
+            NameValueCollection parameters = new NameValueCollection();
+            parameters.Add("force", "true");
+
+            HttpClient client = CreateHttpClient(url, HttpMethods.Delete, parameters);
             var response = client.DeleteAsync(url).Result;
 
             if(response.IsSuccessStatusCode)
@@ -89,9 +102,12 @@ namespace ScfPodcastUploader.Services.WordPress
 
         public WordPressMedia FindMediaByTitle(string title)
         {
-            HttpClient client = CreateHttpClient();
-
             string url = WordPressMediaUrl + $"?filter[title]={title}";
+            
+            NameValueCollection parameters = new NameValueCollection();
+            parameters.Add("filter%5Btitle%5D", title);
+
+            HttpClient client = CreateHttpClient(WordPressMediaUrl, HttpMethods.Get, parameters);
             var response = client.GetAsync(url).Result;
 
             if(response.IsSuccessStatusCode)
@@ -129,7 +145,7 @@ namespace ScfPodcastUploader.Services.WordPress
         /// <returns></returns>
         private bool AddMediaBroken(string filepath)
         {
-            HttpClient client = CreateHttpClient();
+            string url = "http://windows7vm/wordpress/wp-json/wp/v2/media";
 
             FileStream fileStream = File.Open(filepath, FileMode.Open);
             StreamContent streamContent = new StreamContent(fileStream);
@@ -139,26 +155,26 @@ namespace ScfPodcastUploader.Services.WordPress
             var content = new MultipartFormDataContent();
             content.Add(streamContent);
 
-            var response = client.PostAsync("http://windows7vm/wordpress/wp-json/wp/v2/media", content).Result;
+            HttpClient client = CreateHttpClient(url, HttpMethods.Post);
+            var response = client.PostAsync(url, content).Result;
 
             string result = response.Content.ReadAsStringAsync().Result;
             Console.Out.WriteLine("Result: " + result);
             return response.IsSuccessStatusCode;
         }
 
-
-
         public async Task GetPost(int id)
         {
-            HttpClient client = CreateHttpClient();
+            string url = "http://windows7vm/wordpress/wp-json/wp/v2/posts/2605";
+            HttpClient client = CreateHttpClient(url, HttpMethods.Get);
 
-            Task<string> stringTask = client.GetStringAsync("http://windows7vm/wordpress/wp-json/wp/v2/posts/2605");
+            Task<string> stringTask = client.GetStringAsync(url);
 
             var msg = await stringTask;
             Console.Write(msg);
         }
 
-        private HttpClient CreateHttpClient()
+        private HttpClient CreateHttpClient(string url, string httpMethod, NameValueCollection parameters = null)
         {
             Configuration configuration = _configurationService.Configuration;
 
@@ -171,13 +187,16 @@ namespace ScfPodcastUploader.Services.WordPress
             HttpClient client = new HttpClient(httpClientHandler);
 
             client.DefaultRequestHeaders.ExpectContinue = false;
-
+            
             if (configuration.AuthMethod == Configuration.BasicAuthMethod)
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", _configurationService.Configuration.GetBasicAuthString());
-                // client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", "YWRtaW4yOjY2Ym9va3NpbnRoZWJpYmxl");
             }
-            //TODO add oauth headers as appropriate
+            else if (configuration.AuthMethod == Configuration.OAuthMethod)
+            {
+                string oauthHeader = GetOAuthHeader(url, httpMethod, parameters);
+                client.DefaultRequestHeaders.Add("Authorization", oauthHeader);
+            }
 
             return client;
         }
@@ -201,7 +220,11 @@ namespace ScfPodcastUploader.Services.WordPress
             {
                 request.Headers["Authorization"] = $"Basic {configuration.GetBasicAuthString()}";
             }
-            //TODO add oauth headers as appropriate
+            else if(configuration.AuthMethod == Configuration.OAuthMethod)
+            {
+                string oauthHeader = GetOAuthHeader(url, HttpMethods.Post);
+                request.Headers["Authorization"] = oauthHeader;
+            }
 
             string fileName = Path.GetFileName(path);
             request.Headers["Content-Disposition"] = string.Format("file; filename=\"{0}\"", fileName);
@@ -252,6 +275,21 @@ namespace ScfPodcastUploader.Services.WordPress
                 }
                 throw;
             }
+        }
+
+        private string GetOAuthHeader(string url, string httpMethod, NameValueCollection parameters = null)
+        {
+            Configuration configuration = _configurationService.Configuration;
+            
+            string consumerKey = configuration.OAuthConsumerKey;
+            string consumerSecret = configuration.OAuthConsumerSecret;
+            string token = configuration.OAuthToken;
+            string tokenSecret = configuration.OAuthTokenSecret;
+
+            OAuthRequest oauthRequest = OAuthRequest.ForProtectedResource(httpMethod, consumerKey, consumerSecret, token, tokenSecret);
+            oauthRequest.RequestUrl = url;
+
+            return oauthRequest.GetAuthorizationHeader(parameters != null ? parameters : new NameValueCollection());
         }
     }
 }

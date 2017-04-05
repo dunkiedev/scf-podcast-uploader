@@ -1,12 +1,20 @@
 SCF Podcast Uploader ToDo
 -------------------------
 
-- integrate with oauth
-- correct the feed - itunes elements are not quite right
 - configuration property for ffmpeg command
+- configure the SCF website
+  - allow XML files to be uploaded (theme file change)
+  - move the SCF feed from its current location
+  - where the old feed used to be, add an audio message saying that the feed has moved
+  - install the JSON WS interface stuff
+  - go through the oauth process to generate keys etc
+  - install certificate??
+- correct the feed - itunes elements are not quite right
 - work out how to publish the application
 PART error handling
 
+DONE configuration properties for oauth
+DONE integrate with oauth
 DONE be able to read in the details from a file (e.g. run with -i (input) option)
 DONE read in configuration settings from a config file (JSON?)
 DONE bug: size of file is of the WAV file, not the MP3 file, so is huge
