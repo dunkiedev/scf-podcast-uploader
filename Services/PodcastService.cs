@@ -45,7 +45,7 @@ namespace ScfPodcastUploader.Services
             //2. call ffmpeg to create the wav file
             string podcastWavFilepath = Path.Combine(tempFolder.FullName, "podcast.wav");
             Process ffmpeg = new Process();
-            ffmpeg.StartInfo.FileName = "ffmpeg";
+            ffmpeg.StartInfo.FileName = _configurationService.Configuration.FfmpegPath;
             ffmpeg.StartInfo.Arguments = $"-y -f concat -safe 0 -i \"{filelistPath}\" -c copy \"{podcastWavFilepath}\"";
             ffmpeg.StartInfo.UseShellExecute = false;
             ffmpeg.StartInfo.RedirectStandardOutput = true;
@@ -81,7 +81,7 @@ namespace ScfPodcastUploader.Services
             File.WriteAllText(metadataFilepath, metadata);
 
             ffmpeg = new Process();
-            ffmpeg.StartInfo.FileName = "ffmpeg";
+            ffmpeg.StartInfo.FileName = _configurationService.Configuration.FfmpegPath;
             ffmpeg.StartInfo.Arguments = $"-y -i \"{podcastWavFilepath}\" -i \"{metadataFilepath}\" -map_metadata 1 -c:a copy -id3v2_version 3 -write_id3v1 1 -codec:a libmp3lame -qscale:a {bitrate} \"{podcastFilePath}\"";
             ffmpeg.StartInfo.UseShellExecute = false;
             ffmpeg.StartInfo.RedirectStandardOutput = true;

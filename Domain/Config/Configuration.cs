@@ -59,6 +59,12 @@ namespace ScfPodcastUploader.Domain.Config
         public string PodcastAudioFolder { get; set; }
 
         /// <summary>
+        /// The path to ffmpeg.
+        /// </summary>
+        /// <returns></returns>
+        public string FfmpegPath { get; set; } = "ffmpeg";
+
+        /// <summary>
         /// Path to the intro wav file.
         /// </summary>
         /// <returns></returns>

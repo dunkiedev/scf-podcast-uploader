@@ -1,4 +1,3 @@
-using System;
 using ScfPodcastUploader.Domain;
 using ScfPodcastUploader.Domain.WordPress;
 

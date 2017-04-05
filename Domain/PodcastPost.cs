@@ -2,11 +2,19 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using ScfPodcastUploader.Core;
+using ScfPodcastUploader.Domain.Config;
 
 namespace ScfPodcastUploader.Domain
 {
     public class PodcastPost
     {
+        private readonly Configuration _configuration;
+
+        public PodcastPost(Configuration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public string Title { get; set; }
 
         public string Speaker { get; set; }
@@ -61,7 +69,7 @@ namespace ScfPodcastUploader.Domain
         {
             //relies on ffmpeg
             Process ffmpeg = new Process();
-            ffmpeg.StartInfo.FileName = "ffmpeg";
+            ffmpeg.StartInfo.FileName = _configuration.FfmpegPath;
             // ffmpeg.StartInfo.Arguments = $"-i \"{AudioFilePath}\" 2>&1 | grep \"Duration\"| cut -d ' ' -f 4 | sed s/,//";
             ffmpeg.StartInfo.Arguments = $"-i \"{AudioFilePath}\"";
             ffmpeg.StartInfo.UseShellExecute = false;
@@ -76,7 +84,7 @@ namespace ScfPodcastUploader.Domain
             //need to look for a line like this:
             //Duration: 00:42:21.84, start: 0.025057, bitrate: 49 kb/s
             int start = output.IndexOf("Duration: ");
-            if(start > -1)
+            if (start > -1)
             {
                 int end = output.IndexOf(',', start);
                 string duration = output.Substring(start + 13, end - start - 16);

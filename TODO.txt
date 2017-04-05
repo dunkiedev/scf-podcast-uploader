@@ -1,7 +1,6 @@
 SCF Podcast Uploader ToDo
 -------------------------
 
-- configuration property for ffmpeg command
 - configure the SCF website
   - allow XML files to be uploaded (theme file change)
   - move the SCF feed from its current location
@@ -11,8 +10,10 @@ SCF Podcast Uploader ToDo
   - install certificate??
 - correct the feed - itunes elements are not quite right
 - work out how to publish the application
+  - install El Capitan in a VM and do a fresh install of the app
 PART error handling
 
+DONE configuration property for ffmpeg command
 DONE configuration properties for oauth
 DONE integrate with oauth
 DONE be able to read in the details from a file (e.g. run with -i (input) option)

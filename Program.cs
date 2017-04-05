@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using ScfPodcastUploader.Domain;
 using ScfPodcastUploader.Domain.WordPress;
 using ScfPodcastUploader.Services;
+using ScfPodcastUploader.Services.Config;
 using StructureMap;
 
 namespace ScfPodcastUploader
@@ -38,9 +39,11 @@ namespace ScfPodcastUploader
         }
 
         private readonly IPodcastService _podcastService;
+        private readonly IConfigurationService _configurationService;
 
-        public Program(IPodcastService podcastService)
+        public Program(IPodcastService podcastService, IConfigurationService configurationService)
         {
+            _configurationService = configurationService;
             _podcastService = podcastService;
         }
 
@@ -50,7 +53,7 @@ namespace ScfPodcastUploader
 
             //where should we get the podcast details from?
             PodcastPost podcastPost;
-            if(commandLineArgs.IsInteractive)
+            if (commandLineArgs.IsInteractive)
             {
                 podcastPost = PromptUserForPodcastDetails();
             }
@@ -64,21 +67,21 @@ namespace ScfPodcastUploader
 
             //upload the file
             WordPressResult audioFileResult = UploadAudioFile(podcastPost);
-            if(!audioFileResult.IsSuccess) { return; }
+            if (!audioFileResult.IsSuccess) { return; }
 
             podcastPost.PodcastMediaUrl = audioFileResult.Url;
 
             //create the post on WordPress
             WordPressResult createPostResult = CreatePost(podcastPost);
             podcastPost.PodcastPostUrl = createPostResult.Url;
-            
+
             //update the RSS feed
             UpdateRssFeed(podcastPost);
         }
 
         private PodcastPost PromptUserForPodcastDetails()
         {
-            PodcastPost podcastPost = new PodcastPost();
+            PodcastPost podcastPost = new PodcastPost(_configurationService.Configuration);
 
             Console.Write("Title: ");
             podcastPost.Title = Console.ReadLine();
@@ -129,7 +132,7 @@ namespace ScfPodcastUploader
             string path;
             do
             {
-                if(isFirstEntryOfPath)
+                if (isFirstEntryOfPath)
                 {
                     Console.Write("Path to audio file: ");
                 }
@@ -137,18 +140,18 @@ namespace ScfPodcastUploader
                 {
                     Console.Write("File does not exist - please enter a valid path: ");
                 }
-                
+
                 path = Console.ReadLine();
                 _logger.Info("Audio file path entered: " + path);
                 isFirstEntryOfPath = false;
-            } while(!File.Exists(path));
+            } while (!File.Exists(path));
 
             return path;
         }
 
         private string CreateMp3File(string filepath, PodcastPost podcastPost)
         {
-            if(filepath.EndsWith(".mp3"))
+            if (filepath.EndsWith(".mp3"))
             {
                 Console.WriteLine("Supplied audio file is MP3 file so skipping MP3 generation");
                 return filepath;
@@ -176,7 +179,7 @@ namespace ScfPodcastUploader
             _logger.Info("Beginning upload of audio file");
 
             WordPressResult result = _podcastService.UploadAudioFile(podcastPost.AudioFilePath);
-            if(result.IsSuccess)
+            if (result.IsSuccess)
             {
                 Console.WriteLine($"Success! (Id = {result.Id})");
                 _logger.Info($"Upload was successful - id = {result.Id}");
@@ -199,9 +202,9 @@ namespace ScfPodcastUploader
         {
             Console.Write("Creating WordPress post...  ");
             _logger.Info("Beginning creation of post");
-            
+
             WordPressResult result = _podcastService.CreatePodcastPost(podcastPost);
-            if(result.IsSuccess)
+            if (result.IsSuccess)
             {
                 Console.WriteLine($"Success! (Id = {result.Id})");
                 Console.WriteLine($"The URL of the new post is:\n{result.Url}");
@@ -233,14 +236,14 @@ namespace ScfPodcastUploader
         {
             CommandLineArgs commandLineArgs = new CommandLineArgs();
 
-            if(args.Length == 1)
+            if (args.Length == 1)
             {
-                if(new string []{"-i", "--i", "/i"}.Contains(args[0]))
+                if (new string[] { "-i", "--i", "/i" }.Contains(args[0]))
                 {
                     commandLineArgs.IsInteractive = true;
                 }
             }
-            else if(args.Length != 0)
+            else if (args.Length != 0)
             {
                 Console.WriteLine("Usage: ScfPodcastUploader [-i]");
                 Console.WriteLine("-i = enter details interactively");
@@ -265,13 +268,13 @@ namespace ScfPodcastUploader
             string dateString = config["PodcastDetails:Date"];
             string audioFilePath = config["PodcastDetails:AudioFilePath"];
 
-            DateTime date; 
-            if(!DateTime.TryParseExact(dateString, new[] { "dd/MM/yyyy", "d/MM/yyyy", "dd/M/yyyy" }, null, DateTimeStyles.None, out date))
+            DateTime date;
+            if (!DateTime.TryParseExact(dateString, new[] { "dd/MM/yyyy", "d/MM/yyyy", "dd/M/yyyy" }, null, DateTimeStyles.None, out date))
             {
                 throw new ArgumentException("The date in the PodcastDetails.ini file must be in the format dd/mm/yyyy e.g. 31/01/2017");
             }
 
-            return new PodcastPost
+            return new PodcastPost(_configurationService.Configuration)
             {
                 Title = title,
                 Speaker = speaker,
