@@ -10,7 +10,10 @@ SCF Podcast Uploader ToDo
   - install certificate??
 - correct the feed - itunes elements are not quite right
 - work out how to publish the application
-  - install El Capitan in a VM and do a fresh install of the app
+    DONE how to include other files in the published folder e.g. log4net.config, PodcastDetails.ini
+    DONE try installing on the Mavericks VM - didn't work :-(
+    DONE install El Capitan in a VM and do a fresh install of the app
+    - do I need a shell script to start it?
 PART error handling
 
 DONE configuration property for ffmpeg command

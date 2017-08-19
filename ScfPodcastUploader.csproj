@@ -2,6 +2,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp1.1</TargetFramework>
+    <RuntimeIdentifiers>osx.10.11-x64</RuntimeIdentifiers>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.8" />
@@ -12,5 +13,13 @@
     <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     <PackageReference Include="OAuth.DotNetCore" Version="1.0.4" />
     <PackageReference Include="StructureMap" Version="4.4.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="appsettings.json" CopyToPublishDirectory="Always" />
+    <None Include="log4net.config" CopyToPublishDirectory="Always" />
+    <None Include="metadata-template.txt" CopyToPublishDirectory="Always" />
+    <None Include="PodcastDetails.ini" CopyToPublishDirectory="Always" />
+    <None Include="podcast-post-template.html" CopyToPublishDirectory="Always" />
+    <None Include="RssFeedItemTemplate.xml" CopyToPublishDirectory="Always" />
   </ItemGroup>
 </Project>

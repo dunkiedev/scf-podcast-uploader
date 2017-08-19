@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using log4net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OAuth;
@@ -19,6 +20,8 @@ namespace ScfPodcastUploader.Services.WordPress
 {
     public class WordPressService : IWordPressService
     {
+        private static readonly ILog _logger = LogManager.GetLogger(typeof(WordPressService));
+
         private static class HttpMethods
         {
             public const string Delete = "DELETE";
@@ -47,6 +50,7 @@ namespace ScfPodcastUploader.Services.WordPress
             if (response.IsSuccessStatusCode)
             {
                 string resultString = response.Content.ReadAsStringAsync().Result;
+                resultString = GetJsonFromResponseText(resultString);
                 JObject jsonResult = JObject.Parse(resultString);
 
                 return new WordPressResult()
@@ -102,10 +106,13 @@ namespace ScfPodcastUploader.Services.WordPress
 
         public WordPressMedia FindMediaByTitle(string title)
         {
-            string url = WordPressMediaUrl + $"?filter[title]={title}";
-            
+            // string url = WordPressMediaUrl + $"?filter[title]={title}";
+            // NameValueCollection parameters = new NameValueCollection();
+            // parameters.Add("filter%5Btitle%5D", title);
+
+            string url = WordPressMediaUrl + $"?slug={title}";
             NameValueCollection parameters = new NameValueCollection();
-            parameters.Add("filter%5Btitle%5D", title);
+            parameters.Add("slug", title);
 
             HttpClient client = CreateHttpClient(WordPressMediaUrl, HttpMethods.Get, parameters);
             var response = client.GetAsync(url).Result;
@@ -113,6 +120,7 @@ namespace ScfPodcastUploader.Services.WordPress
             if(response.IsSuccessStatusCode)
             {
                 string resultString = response.Content.ReadAsStringAsync().Result;
+                resultString = GetJsonFromResponseText(resultString);
                 JArray jsonResult = JArray.Parse(resultString);
 
                 if(jsonResult.Count == 0)
@@ -250,8 +258,9 @@ namespace ScfPodcastUploader.Services.WordPress
                 using (var responseStream = response.GetResponseStream())
                 using (var reader = new StreamReader(responseStream))
                 {
-                    string json = reader.ReadToEnd();
-                    var j = JObject.Parse(json);
+                    string responseText = reader.ReadToEnd();
+                    responseText = GetJsonFromResponseText(responseText);
+                    var j = JObject.Parse(responseText);
 
                     return new WordPressResult
                     {
@@ -275,6 +284,27 @@ namespace ScfPodcastUploader.Services.WordPress
                 }
                 throw;
             }
+        }
+
+        /// <summary>
+        /// In Azure the JSON response can be prepended by a Document Moved messages; calling
+        /// this method checks for this and returns only the JSON part.
+        /// </summary>
+        /// <param name="responseText"></param>
+        /// <returns></returns>
+        private string GetJsonFromResponseText(string responseText)
+        {
+            if(responseText.IndexOf("<title>Document Moved</title>") > -1)
+            {
+                _logger.Info("Document Moved detected - looking for JSON after HTML");
+                int jsonStart = responseText.IndexOf("{");
+                if(jsonStart != -1)
+                {
+                    return responseText.Substring(jsonStart);
+                }
+            }
+
+            return responseText;
         }
 
         private string GetOAuthHeader(string url, string httpMethod, NameValueCollection parameters = null)
