@@ -41,6 +41,8 @@ namespace ScfPodcastUploader.Domain
 
         public int AuthorId { get; set; }
 
+        public int? FeaturedMediaId { get; set; }
+
         public string GetFormattedSize()
         {
             string[] sizes = { "B", "KB", "MB", "GB", "TB" };

@@ -29,3 +29,6 @@ DONE create ID3 tags for MP3 file
 DONE create audio MP3 file from intro + sermon (use ffmpeg)
 DONE take in parameters from standard in
 DONE insert date into name of podcast post entry
+
+How to publish:
+dotnet publish -c Release -r osx.10.11-x64

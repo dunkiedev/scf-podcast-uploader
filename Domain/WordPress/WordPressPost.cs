@@ -15,5 +15,7 @@ namespace ScfPodcastUploader.Domain
         public int author { get; set; }
 
         public string date { get; set; }
+
+        public int? featured_media { get; set; }
     }
 }

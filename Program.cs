@@ -267,6 +267,7 @@ namespace ScfPodcastUploader
             string bibleText = config["PodcastDetails:BibleText"];
             string dateString = config["PodcastDetails:Date"];
             string audioFilePath = config["PodcastDetails:AudioFilePath"];
+            string featuredMedia = config["PodcastDetails:FeaturedMedia"];
 
             DateTime date;
             if (!DateTime.TryParseExact(dateString, new[] { "dd/MM/yyyy", "d/MM/yyyy", "dd/M/yyyy" }, null, DateTimeStyles.None, out date))
@@ -274,7 +275,7 @@ namespace ScfPodcastUploader
                 throw new ArgumentException("The date in the PodcastDetails.ini file must be in the format dd/mm/yyyy e.g. 31/01/2017");
             }
 
-            return new PodcastPost(_configurationService.Configuration)
+            PodcastPost podcastPost = new PodcastPost(_configurationService.Configuration)
             {
                 Title = title,
                 Speaker = speaker,
@@ -282,6 +283,14 @@ namespace ScfPodcastUploader
                 Date = date.AddHours(11),   //set the date to 11am
                 AudioFilePath = audioFilePath
             };
+
+            int featuredMediaId;
+            if(int.TryParse(featuredMedia, out featuredMediaId))
+            {
+                podcastPost.FeaturedMediaId = featuredMediaId;
+            }
+
+            return podcastPost;
         }
     }
 
