@@ -136,7 +136,8 @@ namespace ScfPodcastUploader.Services
                 content = content,
                 date = podcastPost.Date.ToString("yyyy-MM-dd hh:mm:ss"),
                 categories = new [] { _configurationService.Configuration.WordPressPodcastCategoryId },
-                author = _configurationService.Configuration.WordPressAuthorId
+                author = _configurationService.Configuration.WordPressAuthorId,
+                featured_media = podcastPost.FeaturedMediaId
             };
             WordPressResult result = _wordPressService.AddPost(wordPressPost);
 
